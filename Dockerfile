@@ -1,6 +1,6 @@
 FROM ruby:2.7-slim
 
-ARG CH_VERSION=19.3.4
+ARG CH_VERSION=25.5.3.75
 ARG PG_VERSION=14
 
 RUN apt-get update && \
@@ -8,8 +8,8 @@ RUN apt-get update && \
         wget htop lbzip2 gnupg2 build-essential \
         libxml2-dev libxslt-dev liblzma-dev zlib1g-dev \
         patch libpq5 cron locales tzdata && \
-    echo "deb http://repo.yandex.ru/clickhouse/deb/stable/ main/" > /etc/apt/sources.list.d/clickhouse.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv E0C56BD4 && \
+    echo "deb [signed-by=/usr/share/keyrings/clickhouse-keyring.gpg arch=$(dpkg --print-architecture)] https://packages.clickhouse.com/deb stable main" > /etc/apt/sources.list.d/clickhouse.list && \
+    wget --quiet -O - 'https://packages.clickhouse.com/rpm/lts/repodata/repomd.xml.key' | gpg --dearmor -o /usr/share/keyrings/clickhouse-keyring.gpg && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ bullseye-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     apt-get update && \
