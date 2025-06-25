@@ -1,7 +1,7 @@
 FROM ruby:2.7-slim
 
 ARG CH_VERSION=25.5.3.75
-ARG PG_VERSION=14
+ARG PG_VERSION=17
 
 RUN apt-get update && \
     apt-get install -y \
