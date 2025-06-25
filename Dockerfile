@@ -44,4 +44,4 @@ ADD crontab /etc/cron.d/backup-cron
 RUN chmod 0644 /etc/cron.d/backup-cron
 
 # Run the command on container startup
-ENTRYPOINT /backup/run_cron.sh
+ENTRYPOINT ["/backup/run_cron.sh"]
