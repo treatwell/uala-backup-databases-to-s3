@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: uala-backup-databases-to-s3
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  description: This image dumps your databases every hour (OR custom cron defined in BACKUP_CRON_SCHEDULE), compresses the dump using bz2 and uploads it to an amazon S3 bucket..
+  title: database backup script on S3 bucket
+spec:
+  type: service
+  lifecycle: production
+  owner: operations-and-insights
+  
